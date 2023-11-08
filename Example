@@ -1,9 +1,32 @@
-<mxfile host="app.diagrams.net" modified="2023-11-08T17:02:40.718Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" version="22.0.8" etag="IdmLwP0QT28rZ3V_9PvO" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-08T17:31:52.328Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36" etag="E_J-oh2USEnJB_xtNnZd" version="22.0.8" type="github">
   <diagram name="Page-1" id="5y6lqE3WTUEX4RH8mhOv">
-    <mxGraphModel>
+    <mxGraphModel dx="820" dy="465" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="bUEh_EIa3_E_L0fp-5Yo-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="bUEh_EIa3_E_L0fp-5Yo-1" target="bUEh_EIa3_E_L0fp-5Yo-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bUEh_EIa3_E_L0fp-5Yo-1" value="Client-facing Website&lt;br&gt;Passive:&lt;br&gt;- Monitor current tank levels&lt;br&gt;- View tank alarm threshold&lt;br&gt;- View alarm status (cleared vs. alarming)&lt;br&gt;Clearing Alarm Action:&lt;br&gt;- Send POST Request with timestamp&lt;br&gt;Alter Tank Threshold Action:&lt;br&gt;- Send POST Request with new level&lt;br&gt;- Do not allow if system is actively alarming" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="60" width="210" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="bUEh_EIa3_E_L0fp-5Yo-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="bUEh_EIa3_E_L0fp-5Yo-3" target="bUEh_EIa3_E_L0fp-5Yo-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bUEh_EIa3_E_L0fp-5Yo-3" value="Tank&lt;br&gt;Actions:&lt;br&gt;- Clearing alarm&lt;br&gt;- Altering alarm threshold&lt;br&gt;&lt;br&gt;Responses:&lt;br&gt;- Respond with Clear status once toggled from Alarming to Clear&lt;br&gt;- Respond with confirmation of new threshold level&lt;br&gt;- Passively reporting current level at all times" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="601" y="60" width="200" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="bUEh_EIa3_E_L0fp-5Yo-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="bUEh_EIa3_E_L0fp-5Yo-4" target="bUEh_EIa3_E_L0fp-5Yo-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bUEh_EIa3_E_L0fp-5Yo-8" value="Ethernet Connection" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="bUEh_EIa3_E_L0fp-5Yo-6">
+          <mxGeometry x="-0.2465" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bUEh_EIa3_E_L0fp-5Yo-4" value="Go Server&lt;br&gt;Development Notes:&lt;br&gt;- Written with HTTP package&lt;br&gt;- Can handle scaling&lt;br&gt;&lt;br&gt;Clearing Alarm:&lt;br&gt;- Receive POST Request for clearing alarming status&lt;br&gt;- Open HTTP Client connection&lt;br&gt;- Read whether alarm is alarming&lt;br&gt;- If yes, Write Clear&lt;br&gt;- Wait for confirmation from tank&lt;br&gt;- Send confirmation and close connection&lt;br&gt;&lt;br&gt;Altering Tank Threshold&lt;br&gt;- Receive POST Request for altering level&lt;br&gt;- Parse the JSON data, confirm valid value&lt;br&gt;- Respond with error if need be&lt;br&gt;- Otherwise, Write new threshold to tank&lt;br&gt;- Wait for confirmation of threshold alteration from tank&lt;br&gt;- Send confirmation and close connection&lt;br&gt;&lt;br&gt;Passive Monitoring:&lt;br&gt;- Poll tank every x&amp;nbsp;&lt;br&gt;- Caching value from tank&amp;nbsp;&lt;br&gt;- Respond to web request when user logs on, presumably this is a GET" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="150" width="210" height="480" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
